@@ -5,7 +5,6 @@
 //  Created by Antonio Bocchetti on 09/12/22.
 //
 
-import Foundation
 import SwiftUI
 
 class ArticleData: ObservableObject{

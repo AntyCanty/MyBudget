@@ -21,40 +21,42 @@ struct ListView: View {
             
             ScrollView{
                 ForEach(searchResults){ lista in
-                    ZStack(alignment: .leading){
-                        
-                        Image(lista.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .shadow(radius: 10)
-                            .frame(height: 100)
-                        
-                        Rectangle()
-                            .fill(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint:.top, endPoint: .bottom))
-                            .frame(height: 100)
+                    NavigationLink(destination:ListDetailView(lista : lista)){
+                        ZStack(alignment: .leading){
+                            
+                            Image(lista.imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .shadow(radius: 10)
+                                .frame(height: 100)
+                            
+                            Rectangle()
+                                .fill(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint:.top, endPoint: .bottom))
+                                .frame(height: 100)
                             //.frame(width: 100)
                             
-                        
-                        VStack(alignment: .leading){
-                            Text(lista.title)
-                                .font(.title)
-                                .bold()
-                        }
+                            
+                            VStack(alignment: .leading){
+                                Text(lista.title)
+                                    .font(.title)
+                                    .bold()
+                            }
                             .foregroundColor(.white)
                             .padding(.horizontal)
                             
                             
                         }
-                    
+                        
                         .cornerRadius(20)
                         .padding(.horizontal)
                     }
-                    .onDelete(perform: delete) //IT DOESN'T WORK
+                    //.onDelete(perform: delete) //IT DOESN'T WORK
                     
                 }
-            
-            .navigationTitle("Lists")
-            .searchable(text: $searchText)
+                
+                .navigationTitle("Lists")
+                .searchable(text: $searchText)
+            }
         }
         
     
