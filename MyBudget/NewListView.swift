@@ -14,7 +14,7 @@ struct NewListView: View {
     
     @State var title: String = ""
     @State var budget: Double = 0
-    @State var articles : [Article]
+    @State var articles : [Article] =  []
     @State var imageName : String = ""
     
     @Binding var newListViewisPresented : Bool
@@ -42,27 +42,33 @@ struct NewListView: View {
                 }
             }
             .navigationTitle("New List")
-            //            .toolbar {
-            //                ToolbarItem{
-            //                    Button{
-            //
-            //                        addList()
-            //                        newLearnerViewisPresented.toggle()
-            //
-            //                    }label:{
-            //                        Text("Add")
-            //
-            //                    }
-            //
-            //                }
-            //
-            //            }
+                        .toolbar {
+                            ToolbarItem{
+                                Button{
+            
+                                    addList(title: title, budget: budget, articles: articles,imageName: imageName)
+                                    newListViewisPresented.toggle()
+            
+                                }label:{
+                                    Text("Save")
+            
+                                }
+            
+                            }
+            
+                        }
         }
+    }
+    
+    func addList(title: String, budget: Double, articles: [Article],imageName: String){
+        let newList = List_(title: title, budget: budget, articles: articles,imageName: imageName)
+        myList.lists.append(newList)
+        
     }
 }
 
 struct NewListView_Previews: PreviewProvider {
     static var previews: some View {
-        NewListView(articles: articleData.articles, newListViewisPresented: .constant(true))
+        NewListView(newListViewisPresented: .constant(true))
     }
 }

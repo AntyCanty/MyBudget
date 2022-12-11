@@ -11,7 +11,7 @@ struct ListView: View {
     
     @ObservedObject var myList = listData
     @State private var searchText = ""
-    //    @State var newListViewisPresented: Bool = false
+    @State var newListViewisPresented: Bool = false
     
     
     
@@ -29,11 +29,13 @@ struct ListView: View {
                                 .aspectRatio(contentMode: .fill)
                                 .shadow(radius: 10)
                                 .frame(height: 100)
+//                                .frame(width: 100)
                             
                             Rectangle()
                                 .fill(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint:.top, endPoint: .bottom))
                                 .frame(height: 100)
-                            //.frame(width: 100)
+//                                .frame(width: 100)
+                                
                             
                             
                             VStack(alignment: .leading){
@@ -56,6 +58,16 @@ struct ListView: View {
                 
                 .navigationTitle("Lists")
                 .searchable(text: $searchText)
+                .sheet(isPresented: $newListViewisPresented){
+                    NewListView(newListViewisPresented: $newListViewisPresented)
+                }
+                .toolbar{
+                    Button{
+                        newListViewisPresented.toggle()
+                    }label: {
+                        Image(systemName: "plus")
+                    }
+                }
             }
         }
         
