@@ -4,7 +4,7 @@
 //
 //  Created by Antonio Bocchetti on 09/12/22.
 //
-
+import Foundation
 import SwiftUI
 
 //Creiamo il model per un generico articolo

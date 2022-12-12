@@ -13,49 +13,26 @@ struct ListView: View {
     @State private var searchText = ""
     @State var newListViewisPresented: Bool = false
     
+    let columns = [
+        GridItem(.fixed(175)),
+        GridItem(.fixed(175))
+    ]
+    
     
     
     var body: some View {
         
         NavigationStack{
-            
-            ScrollView{
-                ForEach(searchResults){ lista in
-                    NavigationLink(destination:ListDetailView(lista : lista)){
-                        ZStack(alignment: .leading){
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 15){
+                    ForEach(searchResults){ lista in
+                        NavigationLink(destination:ListDetailView(lista : lista)){
                             
-                            Image(lista.imageName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .shadow(radius: 10)
-                                .frame(height: 100)
-//                                .frame(width: 100)
-                            
-                            Rectangle()
-                                .fill(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint:.top, endPoint: .bottom))
-                                .frame(height: 100)
-//                                .frame(width: 100)
-                                
-                            
-                            
-                            VStack(alignment: .leading){
-                                Text(lista.title)
-                                    .font(.title)
-                                    .bold()
-                            }
-                            .foregroundColor(.white)
-                            .padding(.horizontal)
-                            
+                            CardOfList(list : lista)
                             
                         }
-                        
-                        .cornerRadius(20)
-                        .padding(.horizontal)
                     }
-                    //.onDelete(perform: delete) //IT DOESN'T WORK
-                    
                 }
-                
                 .navigationTitle("Lists")
                 .searchable(text: $searchText)
                 .sheet(isPresented: $newListViewisPresented){
@@ -65,13 +42,11 @@ struct ListView: View {
                     Button{
                         newListViewisPresented.toggle()
                     }label: {
-                        Image(systemName: "plus")
+                        Image(systemName: "square.and.pencil")
                     }
                 }
             }
         }
-        
-    
     }
     
     var searchResults: [List_] {
@@ -86,10 +61,6 @@ struct ListView: View {
         myList.lists.remove(atOffsets: offsets)
     }
 }
-
-
-
-
 
 
 struct ListView_Previews: PreviewProvider {
