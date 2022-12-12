@@ -69,3 +69,21 @@ class ListData: ObservableObject{//dico che questa classe puo essere usata in al
 }
 
 var listData = ListData()
+
+class FriendsData: ObservableObject {
+    
+    @Published var friends = [
+        Friends (name: "John", surname: "Doe", favoritecolor: .mint, phonenumber: "999-111-999", imagename: "1"),
+        Friends (name: "Kohn", surname: "Loe", favoritecolor: .black, phonenumber: "999-111-999", imagename: "2"),
+        Friends (name: "Lohn", surname: "Koe", favoritecolor: .red, phonenumber: "999-111-999", imagename: "3"),
+        Friends (name: "Rohn", surname: "Foe", favoritecolor: .purple, phonenumber: "999-111-999", imagename: "4"),
+        Friends (name: "Wohn", surname: "Soe", favoritecolor: .mint, phonenumber: "999-111-999", imagename: "5"),
+        Friends (name: "Qohn", surname: "Zoe", favoritecolor: .orange, phonenumber: "999-111-999", imagename: "6"),
+        Friends (name: "John", surname: "Doe", favoritecolor: .mint, phonenumber: "999-111-999", imagename: "7"),
+        Friends (name: "Kohn", surname: "Loe", favoritecolor: .black, phonenumber: "999-111-999", imagename: "8"),
+        Friends (name: "Lohn", surname: "Koe", favoritecolor: .red, phonenumber: "999-111-999", imagename: "9"),
+        Friends (name: "Rohn", surname: "Foe", favoritecolor: .purple, phonenumber: "999-111-999", imagename: "10"),
+    ]
+}
+
+var friendsData = FriendsData()

@@ -24,3 +24,13 @@ struct List_: Identifiable {//Identifica l'oggetto come UNICO
     var articles : [Article]
     var imageName : String = ""
 }
+// modello amici
+struct Friends:Identifiable{
+    var id = UUID()
+    var name: String
+    var surname: String
+    var favoritecolor: Color
+    var phonenumber: String = "no description"
+    var imagename: String = "no image"
+}
+
