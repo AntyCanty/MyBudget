@@ -16,70 +16,74 @@ struct CardOfList: View {
         
         ZStack(alignment: .topLeading){
             
-            VStack{
+            VStack(alignment: .center){
+                HStack(){
+                    Spacer()
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.black)
+                }
+                .padding(.top, 10)
+                .padding(.trailing, 10)
                 
                 HStack(alignment: .center){
                     
-                    Image(systemName: "person.fill")
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(.black, lineWidth: 2)
-                        ).padding(.top,20)
-                    
-                    Text(list.title)
-                        .bold()
-                        .padding(.top,20)
-                    
-                    Image(systemName: "star")
-                        .padding(.top,20)
+                    Image(systemName: "cart.fill")
+                        .resizable()
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 20)
+//                                .stroke(.black, lineWidth: 1)
+//                        )
+                        .frame(width: 35,height: 35)
+                        .shadow(radius: 10)
                     
                 }
+                .frame(width: 170)
                 .foregroundColor(.black)
-                .padding(.horizontal)
                 
-                HStack(alignment: .center){
+                Text(list.title)
+                    .bold()
+                    .foregroundColor(.black)
+
+                
+                    
+                Spacer()
+                HStack(alignment: .bottom){
                     
                     Text(String(getAlreadYSpend(articles: list.articles)))
-                        .font(.system(size: 300))
-                        .minimumScaleFactor(0.01)
+                        .font(.body)
                         .bold()
-                        .padding(.top,20)
+                        .padding(.leading,5)
                         .foregroundColor(getColorOfSpent(budget: list.budget, totSpent: getAlreadYSpend(articles: list.articles)))
-                    
-                    Text ("/")
-                        .font(.system(size: 300))
-                        .minimumScaleFactor(0.01)
+                                        
+                    Text("/ "+String(list.budget >= 1000 ? (String(round(10 * list.budget/1000) / 10) + " K") : String( round(10 * list.budget) / 10)))
+                        .font(.body)
                         .bold()
-                        .padding(.top,20)
                     
-                    Text(String(list.budget))
-                        .font(.system(size: 300))
-                        .minimumScaleFactor(0.01)
-                        .bold()
-                        .padding(.top,20)
-                    
+                    Spacer()
                     
                     Image(systemName: "chevron.right")
-                        .padding(.top,20)
-                        .padding(.leading,20)
                         .foregroundColor(.gray)
+                        .padding(.trailing, 5)
                     
                 }
+                .frame(width: 150)
                 .foregroundColor(.black)
-                .padding()
+                .padding(.bottom, 15)
+
                 
             }
             
             Rectangle()
-                .frame(width: 170, height: 120)
+                .frame(width: 170, height: 170)
                 .cornerRadius(20)
                 .foregroundColor(.purple)
                 .opacity(0.2)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(.purple, lineWidth: 2)
-                )
-        }.frame(width: 170, height: 120)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 16)
+//                        .stroke(.purple, lineWidth: 2)
+//                )
+        }.frame(width: 160, height: 160)
+        
         
         
     }
@@ -93,7 +97,7 @@ func getAlreadYSpend(articles : [Article] ) -> Double{
         total += article.price
     }
     
-    return Double(round(100 * total) / 100)
+    return Double(round(10 * total) / 10)
     
 }
 

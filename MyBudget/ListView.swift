@@ -24,7 +24,7 @@ struct ListView: View {
         
         NavigationStack{
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 15){
+                LazyVGrid(columns: columns, spacing: 22){
                     ForEach(searchResults){ lista in
                         NavigationLink(destination:ListDetailView(lista : lista)){
                             
