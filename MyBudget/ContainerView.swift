@@ -10,16 +10,19 @@ import SwiftUI
 struct ContainerView: View {
     var body: some View {
         TabView{
-            ListView()
-                .tabItem{
+            Pie(slices: [
+                (1, .purple.opacity(0.4)),
+                (2, Color(hue: 0.818, saturation: 0.636, brightness: 0.431))
+                
+            ]).tabItem{
+                Label("Expenses", systemImage: "cart")
+            }
+            ListView().tabItem{
                     Label("Lists",systemImage: "list.bullet.clipboard")
                 }
-            FriendsView()
-                .tabItem{
-                    Label("Friends",systemImage: "person.3.fill")
-                }
+            FriendsView().tabItem{
+                }.badge(2)
         }
-        
     }
         
 }
