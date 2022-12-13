@@ -14,13 +14,14 @@ struct ContainerView: View {
                 .tabItem{
                     Label("Lists",systemImage: "list.bullet.clipboard")
                 }
-FriendsView()
+            FriendsView()
                 .tabItem{
                     Label("Friends",systemImage: "person.3.fill")
                 }
         }
         
     }
+        
 }
 
 struct ContainerView_Previews: PreviewProvider {

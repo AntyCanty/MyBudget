@@ -23,7 +23,7 @@ struct ListDetailView: View {
                     HStack{
                         
                         Text(articles.name + "          " + String(articles.price)+"$")
-                        Text("          "+String(articles.quantity) + "          " + String(articles.weight))
+                        Text("          "+String(articles.quantity))
                         
                     }
                 }
