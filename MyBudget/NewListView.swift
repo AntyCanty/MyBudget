@@ -21,7 +21,7 @@ struct NewListView: View {
     @State var ArrayOfPrices : [Double] = [0]
     @State var ArrayOfQnt : [Double] = [0]
     @State var selectedImage : String = symbolData.symbols[0]
-    
+    @State var checkDelete : Bool = false
     @State private var showingSheet = false
 
     
@@ -102,7 +102,7 @@ struct NewListView: View {
                 ToolbarItem{
                     Button{
                         
-                        addList(title: title, budget: budget, articles: articles,imageName: imageName, articlesName: ArrayOfNames, articlesPrice: ArrayOfPrices, articlesQuant: ArrayOfQnt)
+                        addList(title: title, budget: budget, articles: articles,imageName: selectedImage, articlesName: ArrayOfNames, articlesPrice: ArrayOfPrices, articlesQuant: ArrayOfQnt)
                         newListViewisPresented.toggle()
                         
                     }label:{
