@@ -33,8 +33,11 @@ struct ListDetailView: View {
                         HStack(alignment: .center, spacing: 50) {
                             
                             Text(articles.name).frame(width: 60)
+                                .scaledToFill()
                             Text(String(articles.price)+"$").frame(minWidth: 40)
+                                .scaledToFill()
                             Text("Q: " + String(articles.quantity)).frame(minWidth: 50)
+                                .scaledToFill()
                         }.onAppear{ if(!sumIsDown){
                             sum = sum + Double(articles.price)
                             if(articles.id == lista.articles.first?.id) {
@@ -48,7 +51,7 @@ struct ListDetailView: View {
                     }
                 }.onDelete(perform: delete)
             }
-            .navigationTitle("Grocery List")
+            .navigationTitle(lista.title)
             .sheet(isPresented: $newLearnerViewisPresented) {
                 //                NewLearnerView(newLearnerViewisPresented: $newLearnerViewisPresented)
             }
