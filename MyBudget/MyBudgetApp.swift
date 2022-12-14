@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MyBudgetApp: App {
+    @StateObject var myData = ListData()
     var body: some Scene {
         WindowGroup {
             ContainerView()
+                .environmentObject(myData)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     
-    @ObservedObject var myList = listData
+    @EnvironmentObject var myList : ListData
     @State private var searchText = ""
     @State var newListViewisPresented: Bool = false
     
@@ -26,7 +26,7 @@ struct ListView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 22){
                     ForEach(searchResults){ lista in
-                        NavigationLink(destination:ListDetailView(lista : lista)){
+                        NavigationLink(destination:ListDetailView(lista: lista)){
                             
                             CardOfList(list : lista)
                             

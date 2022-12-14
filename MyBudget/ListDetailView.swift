@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ListDetailView: View {
     
-    @ObservedObject var myList = listData
+    @EnvironmentObject var myList : ListData
     @State var lista : List_
     @State private var searchText = ""
     @State var newLearnerViewisPresented: Bool = false
@@ -28,7 +28,7 @@ struct ListDetailView: View {
                     
                     HStack{
                         
-                        CheckBoxView(article: $articles)
+                        CheckBoxView(article: $articles, idList: lista.id)
                         
                         HStack(alignment: .center, spacing: 50) {
                             

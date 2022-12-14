@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContainerView: View {
+    @EnvironmentObject var myList : ListData
     var body: some View {
         TabView{
             Pie(slices: [
