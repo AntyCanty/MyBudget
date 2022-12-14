@@ -28,45 +28,52 @@ struct NewListView: View {
     var body: some View {
         
         NavigationStack{
-            Button{
-                ArrayOfNames.append("")
-                ArrayOfPrices.append(0)
-                ArrayOfQnt.append(0)
-                
-                count+=1
-                print(count)
-            }label:{Text("+")}
-            Form{
-                //FUNCTION ADD IMAGE
-                
-                Section(header: Text("Title")){
-                    TextField("title", text: $title)
-                }
-                Section(header: Text("Budget")){
-                    TextField("budget", value: $budget, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                        .keyboardType(.decimalPad)
-                }
-                Section(header: Text("Articles")){
-                    List {
-                        ForEach(0..<count,id: \.self) { i in
+            ScrollViewReader { p in
+                Form{
+                    //FUNCTION ADD IMAGE
+                    
+                    Section(header: Text("Title")){
+                        TextField("title", text: $title)
+                    }
+                    Section(header: Text("Budget")){
+                        TextField("budget", value: $budget, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                            .keyboardType(.decimalPad)
+                    }
+                    Section(header: Text("Articles")){
+                        HStack{
+                            Spacer()
+                            Button{
+                                ArrayOfNames.append("")
+                                ArrayOfPrices.append(0)
+                                ArrayOfQnt.append(0)
+                                
+                                count+=1
+                                print(count)
+                            }label:{Image(systemName: "plus")}
                             
-                            
-                            HStack{
-                                TextField("Name", text:$ArrayOfNames[i])
-                                
-                                Divider()
-                                
-                                
-                                TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
-                                
-                                Divider()
-                                
-                                TextField("Quantity", value: $ArrayOfQnt[i], format: .number)
-                            }
                         }
                         
-                        
-                        
+                        List {
+                            ForEach(0..<count,id: \.self) { i in
+                                
+                                
+                                HStack{
+                                    TextField("Name", text:$ArrayOfNames[i])
+                                    
+                                    Divider()
+                                    
+                                    
+                                    TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                                    
+                                    Divider()
+                                    
+                                    TextField("Quantity", value: $ArrayOfQnt[i], format: .number)
+                                }
+                            }
+                            
+                            
+                            
+                        }
                     }
                 }
             }
