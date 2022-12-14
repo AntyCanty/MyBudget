@@ -86,8 +86,8 @@ struct Pie: View {
                                     startAngle = endAngle
                                 }
                             }
-                            
-                            Text("33%").font(.title).fontWeight(.black).foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491)).multilineTextAlignment(.center).lineLimit(nil)
+                            //MODIFY THIS TEXT
+                            Text(String(round(calcTotalBudget()/calcTotalSpent()*100))).font(.title).fontWeight(.black).foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491)).multilineTextAlignment(.center).lineLimit(nil)
                         }.frame(width: 250, height: 250)
                             .padding(.trailing,180)
                         
