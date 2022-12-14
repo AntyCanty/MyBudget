@@ -8,27 +8,23 @@
 import SwiftUI
 
 struct CheckBoxView: View {
-    @Binding var checked: Bool
+    @EnvironmentObject var myList : ListData
+    @Binding var article: Article
+    @State var idList : UUID 
 
     var body: some View {
-        Image(systemName: checked ? "checkmark.square.fill" : "square")
-            .foregroundColor(checked ? Color(UIColor.systemBlue) : Color.secondary)
+        
+        Image(systemName: article.brought ? "checkmark.square.fill" : "square")
+            .foregroundColor(article.brought ? Color(UIColor.systemBlue) : Color.secondary)
             .onTapGesture {
-                self.checked.toggle()
+                article.brought.toggle()
+                let index = myList.lists.firstIndex(where: {$0.id == idList})
+                let indexArticle = myList.lists[index!].articles.firstIndex(where: {$0.id == article.id})
+                myList.lists[index!].articles[indexArticle!].brought.toggle()
+                print("is checked: " + String(article.brought) )
             }
+            
     }
 }
 
-struct CheckBoxView_Previews: PreviewProvider {
-    struct CheckBoxViewHolder: View {
-        @State var checked = false
 
-        var body: some View {
-            CheckBoxView(checked: $checked)
-        }
-    }
-
-    static var previews: some View {
-        CheckBoxViewHolder()
-    }
-}

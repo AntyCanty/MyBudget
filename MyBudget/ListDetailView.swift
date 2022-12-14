@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ListDetailView: View {
     
-    @ObservedObject var myList = listData
+    @EnvironmentObject var myList : ListData
     @State var lista : List_
     @State private var searchText = ""
     @State var newArticleViewisPresented: Bool = false
@@ -24,13 +24,14 @@ struct ListDetailView: View {
                     .background(Color(red: 0.949, green: 0.949, blue: 0.971))
             }.frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
             List{
-                ForEach(lista.articles) {articles in
+                ForEach($lista.articles) {$articles in
+                    
+                    HStack{
+                        
+                        CheckBoxView(article: $articles, idList: lista.id)
+                        
                         HStack(alignment: .center, spacing: 50) {
-                            Image(systemName: articles.brought ? "checkmark.square.fill" : "square")
-                                .foregroundColor(articles.brought ? Color(UIColor.systemBlue) : Color.secondary)
-                                .onTapGesture {
-                                    checked.toggle()
-                                }
+                            
                             Text(articles.name).frame(width: 60)
                             Text(String(articles.price)+"$").frame(minWidth: 40)
                             Text("Q: " + String(articles.quantity)).frame(minWidth: 50)
@@ -43,7 +44,8 @@ struct ListDetailView: View {
                                 minuSum = minuSum + Double(articles.price)
                             }
                         }
-                            }.frame(width: 30).frame(maxWidth: .infinity)
+                        }.frame(width: 30).frame(maxWidth: .infinity)
+                    }
                 }.onDelete(perform: delete)
             }
             .navigationTitle("Grocery List")
@@ -65,21 +67,21 @@ struct ListDetailView: View {
     
     
     var searchResults: [Article] {
-            if searchText.isEmpty {
-                return lista.articles
-            } else {
-                return lista.articles.filter { $0.name.contains(searchText) }
-            }
+        if searchText.isEmpty {
+            return lista.articles
+        } else {
+            return lista.articles.filter { $0.name.contains(searchText) }
         }
+    }
     
     func delete(at offsets: IndexSet){
         lista.articles.remove(atOffsets: offsets)
     }
     
-//    func editLearner(item: Items) {
-//        let newLearner = Learner(name: name, surname: surname, favouriteColor: favouriteColor, description: description)
-//        myData.learners.append(newLearner)
-//    }
+    //    func editLearner(item: Items) {
+    //        let newLearner = Learner(name: name, surname: surname, favouriteColor: favouriteColor, description: description)
+    //        myData.learners.append(newLearner)
+    //    }
 }
 
 struct ArticleView_Previews: PreviewProvider {
