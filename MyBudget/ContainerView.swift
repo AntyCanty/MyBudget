@@ -11,7 +11,7 @@ struct ContainerView: View {
     @EnvironmentObject var myList : ListData
     var body: some View {
         TabView{
-            Pie(slices: [
+            MainPageView(slices: [
                 (1, .purple.opacity(0.4)),
                 (2, Color(hue: 0.818, saturation: 0.636, brightness: 0.431))
                 
