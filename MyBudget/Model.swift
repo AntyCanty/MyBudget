@@ -13,6 +13,8 @@ struct Article: Identifiable {//Identifica l'oggetto come UNICO
     var name: String
     var price: Double
     var quantity : Double = 1
+    var weight : Double = 0
+    var brought: Bool = false
 }
 
 //Creiamo il model per una generica lista
