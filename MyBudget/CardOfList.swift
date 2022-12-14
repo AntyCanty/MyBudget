@@ -27,7 +27,7 @@ struct CardOfList: View {
                 
                 HStack(alignment: .center){
                     
-                    Image(systemName: "cart.fill")
+                    Image(systemName: list.imageName)
                         .resizable()
 //                        .overlay(
 //                            RoundedRectangle(cornerRadius: 20)

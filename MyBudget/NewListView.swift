@@ -20,7 +20,10 @@ struct NewListView: View {
     @State var ArrayOfNames : [String] = [""]
     @State var ArrayOfPrices : [Double] = [0]
     @State var ArrayOfQnt : [Double] = [0]
+    @State var selectedImage : String = symbolData.symbols[0]
     
+    @State private var showingSheet = false
+
     
     @Binding var newListViewisPresented : Bool
     
@@ -31,6 +34,23 @@ struct NewListView: View {
             ScrollViewReader { p in
                 Form{
                     //FUNCTION ADD IMAGE
+            
+                    Section(header: Text("Image")){
+                        Button() {
+                                   showingSheet.toggle()
+                        }label: {
+                            
+                            Image(systemName: selectedImage)
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.black)
+                        }
+                               .sheet(isPresented: $showingSheet) {
+                                   SheetImageView(selectedImage: $selectedImage)
+                               }
+                       
+                      
+                    }
                     
                     Section(header: Text("Title")){
                         TextField("title", text: $title)
@@ -48,7 +68,7 @@ struct NewListView: View {
                                 ArrayOfQnt.append(0)
                                 
                                 count+=1
-                                print(count)
+//                                print(count)
                             }label:{Image(systemName: "plus")}
                             
                         }

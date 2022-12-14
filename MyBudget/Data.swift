@@ -36,13 +36,13 @@ class ListData: ObservableObject{//dico che questa classe puo essere usata in al
                                                            Article(name: "Hamburger", price: 5.30),
                                                            Article(name: "Eggs", price: 2.20,quantity: 1),
                                                            Article(name: "Apple", price: 3.00)],
-                                                            imageName: "grocery"),
+              imageName: symbolData.symbols[0]),
         
         List_(title: "Clothes List", budget: 1250, articles: [        Article(name:                                                       "T-Shirt", price: 9.99,quantity: 1),
                                                                     Article(name: "Shorts", price: 15.00, quantity: 1),
                                                                     Article(name: "Shoes", price: 80.00, quantity: 1),
                                                                     Article(name: "Socks", price: 5.00, quantity: 2)],
-                                                              imageName: "clothes"),
+              imageName: symbolData.symbols[2]),
         
         List_(title: "Grocery List", budget: 20, articles: [Article(name: "Bread", price:                                                  1.00, quantity: 1),
                                                            Article(name: "Milk", price: 1.20, quantity: 0.500),
@@ -50,13 +50,13 @@ class ListData: ObservableObject{//dico che questa classe puo essere usata in al
                                                            Article(name: "Hamburger", price: 5.30),
                                                            Article(name: "Eggs", price: 2.20,quantity: 1),
                                                            Article(name: "Apple", price: 3.00)],
-                                                            imageName: "grocery"),
+                                                            imageName: symbolData.symbols[0]),
         
         List_(title: "Clothes List", budget: 100, articles: [        Article(name:                                                       "T-Shirt", price: 9.99,quantity: 1),
                                                                     Article(name: "Shorts", price: 15.00, quantity: 1),
                                                                     Article(name: "Shoes", price: 80.00, quantity: 1),
                                                                     Article(name: "Socks", price: 5.00, quantity: 2)],
-                                                              imageName: "clothes")
+                                                              imageName: symbolData.symbols[2])
         
 
         
@@ -87,3 +87,13 @@ class FriendsData: ObservableObject {
 }
 
 var friendsData = FriendsData()
+
+class SymbolData : ObservableObject{
+    
+    @Published var symbols : [String] = ["cart.fill", "book.closed.fill","tshirt.fill","figure.run.circle.fill","backpack.circle",  "doc.fill"]
+    
+    
+}
+ 
+var symbolData = SymbolData()
+    
