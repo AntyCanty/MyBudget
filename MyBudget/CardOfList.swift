@@ -76,7 +76,7 @@ struct CardOfList: View {
             Rectangle()
                 .frame(width: 170, height: 170)
                 .cornerRadius(20)
-                .foregroundColor(.purple)
+                .foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491))
                 .opacity(0.2)
 //                .overlay(
 //                    RoundedRectangle(cornerRadius: 16)
