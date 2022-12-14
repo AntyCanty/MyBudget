@@ -6,7 +6,7 @@ struct ListDetailView: View {
     @ObservedObject var myList = listData
     @State var lista : List_
     @State private var searchText = ""
-    @State var newLearnerViewisPresented: Bool = false
+    @State var newArticleViewisPresented: Bool = false
     @State var checked = true
     @State var sum : Double = 0.0;
     @State var minuSum : Double = 0.0;
@@ -47,12 +47,12 @@ struct ListDetailView: View {
                 }.onDelete(perform: delete)
             }
             .navigationTitle("Grocery List")
-            .sheet(isPresented: $newLearnerViewisPresented) {
+            .sheet(isPresented: $newArticleViewisPresented) {
 //                NewLearnerView(newLearnerViewisPresented: $newLearnerViewisPresented)
             }
             .toolbar {
                 Button {
-                    newLearnerViewisPresented.toggle()
+                    newArticleViewisPresented.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }

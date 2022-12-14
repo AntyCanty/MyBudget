@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Pie: View {
     
-    
+    @ObservedObject var myList = listData
     @State var slices: [(Double, Color)]
     
     var body: some View {
@@ -36,19 +36,19 @@ struct Pie: View {
                         
                         VStack(alignment: .leading, spacing: 35.0){
                             
-                            Text("Total Budget: 999$")
+                            Text("Total Budget: " + String(calcTotalBudget()) + "$")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491))
                                 .multilineTextAlignment(.leading)
                                 .padding(.leading, 160)
-                            Text("Monthly Spendings: 99$")
+                            Text("Monthly Exp: " + String(calcTotalSpent()) + "$")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491))
                                 .multilineTextAlignment(.leading)
                                 .padding(.leading, 160)
-                            Text("Daily Spendings: 9$")
+                            Text("Daily Exp: " + String(calcTotalSpent()) + "$")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491))
@@ -92,7 +92,7 @@ struct Pie: View {
                             .padding(.trailing,180)
                         
                     }//ZStaxk
-                    .navigationTitle("You're doing great!")
+                    .navigationTitle(budgetTitle())
                     
                     .multilineTextAlignment(.trailing)
                     .aspectRatio(1, contentMode: .fit)
@@ -113,7 +113,48 @@ struct Pie: View {
             }
         }
     }
+    
+    func calcTotalBudget()->Double{
+        var totBudget : Double = 0.0
+        
+        for i in myList.lists{
+            totBudget = round(totBudget + i.budget)
+        }
+        return Double(round(10 * totBudget) / 10)
+        
+    }
+    
+    func calcTotalSpent()->Double{
+        var total : Double = 0.0
+        
+        for i in myList.lists{
+            for j in i.articles{
+                 total = total + j.price
+            }
+        }
+        return Double(round(10 * total) / 10)
+    }
+    
+    func budgetTitle() -> String{
+        
+        var title : String = ""
+        
+        if(calcTotalSpent() <= (calcTotalBudget()/2)){
+            title = "You're doing great! 🤩"
+        }
+        else if(calcTotalSpent() > (calcTotalBudget()/2) && calcTotalSpent() < calcTotalBudget()){
+            title = "You're almost out! 😰"
+        }
+        else if(calcTotalSpent() >= calcTotalBudget()){
+            title = "Oh no, You're out! 😭"
+
+        }
+        return title
+    }
+    
 }
+
+
 
 struct Pie_Previews: PreviewProvider {
     static var previews: some View {
