@@ -68,7 +68,8 @@ struct NewListView: View {
                                 ArrayOfQnt.append(0)
                                 
                                 count+=1
-//                                print(count)
+                                checkDelete = true
+                                print(count)
                             }label:{Image(systemName: "plus")}
                             
                         }
@@ -89,9 +90,8 @@ struct NewListView: View {
                                     
                                     TextField("Quantity", value: $ArrayOfQnt[i], format: .number)
                                 }
-                            }
-                            
-                            
+                            }.onDelete( perform: delete)
+                                .deleteDisabled(!checkDelete)
                             
                         }
                     }
@@ -124,7 +124,7 @@ struct NewListView: View {
             
         }
         myList.lists.append(newList)
-       
+        
         
     }
     
@@ -134,6 +134,18 @@ struct NewListView: View {
         return newArticle
     }
     
+    func delete(at offsets: IndexSet){
+        if(count != 1){
+            ArrayOfQnt.remove(atOffsets: offsets)
+            ArrayOfPrices.remove(atOffsets: offsets)
+            ArrayOfNames.remove(atOffsets: offsets)
+            
+            count -= 1
+            if(count == 1){
+                checkDelete = false
+            }
+        }
+    }
 }
 
 struct NewListView_Previews: PreviewProvider {
