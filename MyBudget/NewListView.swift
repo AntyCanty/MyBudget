@@ -20,7 +20,7 @@ struct NewListView: View {
     @State var ArrayOfNames : [String] = [""]
     @State var ArrayOfPrices : [Double] = [0]
     @State var ArrayOfQnt : [Double] = [0]
-    
+    @State var checkDelete : Bool = false
     
     @Binding var newListViewisPresented : Bool
     
@@ -28,45 +28,52 @@ struct NewListView: View {
     var body: some View {
         
         NavigationStack{
-            Button{
-                ArrayOfNames.append("")
-                ArrayOfPrices.append(0)
-                ArrayOfQnt.append(0)
-                
-                count+=1
-                print(count)
-            }label:{Text("+")}
-            Form{
-                //FUNCTION ADD IMAGE
-                
-                Section(header: Text("Title")){
-                    TextField("title", text: $title)
-                }
-                Section(header: Text("Budget")){
-                    TextField("budget", value: $budget, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                        .keyboardType(.decimalPad)
-                }
-                Section(header: Text("Articles")){
-                    List {
-                        ForEach(0..<count,id: \.self) { i in
+            ScrollViewReader { p in
+                Form{
+                    //FUNCTION ADD IMAGE
+                    
+                    Section(header: Text("Title")){
+                        TextField("title", text: $title)
+                    }
+                    Section(header: Text("Budget")){
+                        TextField("budget", value: $budget, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                            .keyboardType(.decimalPad)
+                    }
+                    Section(header: Text("Articles")){
+                        HStack{
+                            Spacer()
+                            Button{
+                                ArrayOfNames.append("")
+                                ArrayOfPrices.append(0)
+                                ArrayOfQnt.append(0)
+                                
+                                count+=1
+                                checkDelete = true
+                                print(count)
+                            }label:{Image(systemName: "plus")}
                             
-                            
-                            HStack{
-                                TextField("Name", text:$ArrayOfNames[i])
-                                
-                                Divider()
-                                
-                                
-                                TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
-                                
-                                Divider()
-                                
-                                TextField("Quantity", value: $ArrayOfQnt[i], format: .number)
-                            }
                         }
                         
-                        
-                        
+                        List {
+                            ForEach(0..<count,id: \.self) { i in
+                                
+                                
+                                HStack{
+                                    TextField("Name", text:$ArrayOfNames[i])
+                                    
+                                    Divider()
+                                    
+                                    
+                                    TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                                    
+                                    Divider()
+                                    
+                                    TextField("Quantity", value: $ArrayOfQnt[i], format: .number)
+                                }
+                            }.onDelete( perform: delete)
+                                .deleteDisabled(!checkDelete)
+                            
+                        }
                     }
                 }
             }
@@ -97,7 +104,7 @@ struct NewListView: View {
             
         }
         myList.lists.append(newList)
-       
+        
         
     }
     
@@ -107,6 +114,18 @@ struct NewListView: View {
         return newArticle
     }
     
+    func delete(at offsets: IndexSet){
+        if(count != 1){
+            ArrayOfQnt.remove(atOffsets: offsets)
+            ArrayOfPrices.remove(atOffsets: offsets)
+            ArrayOfNames.remove(atOffsets: offsets)
+            
+            count -= 1
+            if(count == 1){
+                checkDelete = false
+            }
+        }
+    }
 }
 
 struct NewListView_Previews: PreviewProvider {
