@@ -2,16 +2,13 @@
 import SwiftUI
 
 struct ListDetailView: View {
+    @Environment(\.dismiss) var dismiss
     
     @ObservedObject var myList = listData
     @State var lista : List_
     @State private var searchText = ""
     @State var newArticleViewisPresented: Bool = false
-    @State var checked = true
     @State var sum : Double = 0.0;
-    @State var minuSum : Double = 0.0;
-    @State var sumIsDown : Bool = false;
-    
     
     var body: some View {
         
@@ -20,7 +17,7 @@ struct ListDetailView: View {
 
                 Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
                     .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
-                
+
                     .multilineTextAlignment(.center)
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
                     .frame(width: 300,height: 35.0)
@@ -50,16 +47,36 @@ struct ListDetailView: View {
             }
             .navigationTitle(lista.title)
             .sheet(isPresented: $newArticleViewisPresented) {
-                    NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: lista.id)
-                }
-            .toolbar {
-                Button {
-                    newArticleViewisPresented.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                }
-                
+                NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: lista.id)
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu(content: {
+                        Button{
+                            setAsFavourite(idList:lista.id)
+                        } label: {
+                            Label("Add to favourites",systemImage: "star")
+                        }
+                        Button {
+                            newArticleViewisPresented.toggle()
+                        } label: {
+                            Label("Add article",systemImage: "plus")
+                        }
+                        Button {
+                            deleteList(idList:lista.id)
+                            dismiss()
+                            
+                        } label: {
+                            Label("Delete list",systemImage: "trash")
+                        }
+                        
+                    }, label: {Image(systemName: "ellipsis.circle")})
+                    
+                    
+                }
+
+            }
+            
             
         }
     }
@@ -74,7 +91,19 @@ struct ListDetailView: View {
     
     func delete(at offsets: IndexSet){
         lista.articles.remove(atOffsets: offsets)
-      
+    }
+    
+    func deleteList(idList : UUID){
+        let index = myList.lists.firstIndex(where: {$0.id == idList})
+        myList.lists.remove(at: index!)
+    }
+    
+    func setAsFavourite(idList : UUID){
+        
+            lista.favourite.toggle()
+            let index = myList.lists.firstIndex(where: {$0.id == idList})
+            myList.lists[index!].favourite.toggle()
+            
     }
     
     func updateBudget() -> Double{

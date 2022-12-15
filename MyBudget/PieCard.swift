@@ -102,7 +102,7 @@ struct PieCard: View {
                     }
                 }
 
-                Text(String(round(10*(calcTotalSpent()/calcTotalBudget())*100)/10) + "%").font(.title).fontWeight(.black).foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491)).multilineTextAlignment(.center).lineLimit(nil)
+                Text(String(calcPercentage()) + "%").font(.title).fontWeight(.black).foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491)).multilineTextAlignment(.center).lineLimit(nil)
             }.frame(width: 250, height: 250)
                 .padding(.trailing,180)
             
@@ -135,6 +135,16 @@ struct PieCard: View {
             }
         }
         return Double(round(10 * total) / 10)
+    }
+    
+    func calcPercentage()->Double{
+        if(calcTotalSpent() == 0 || calcTotalBudget() == 0){
+            return 0.0
+        }
+        else{
+            return round(10*(calcTotalSpent()/calcTotalBudget())*100)/10
+        }
+        
     }
 //
 //    func budgetTitle() -> String{

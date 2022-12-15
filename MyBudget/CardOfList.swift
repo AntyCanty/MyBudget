@@ -21,8 +21,11 @@ struct CardOfList: View {
             VStack(alignment: .center){
                 HStack(){
                     Spacer()
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.black)
+                    if(list.favourite){
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.black)
+                    }
+               
                 }
                 .padding(.top, 10)
                 .padding(.trailing, 10)

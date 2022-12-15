@@ -18,6 +18,12 @@ struct FavouritesCardView: View {
     
     var body: some View {
         
+        //        ForEach(myList.lists){i in
+        //            if(i.favourite){
+        //
+        //            }
+        //        }
+        
         ZStack(alignment: .top){
             Rectangle()
                 .padding(.bottom)
@@ -35,16 +41,20 @@ struct FavouritesCardView: View {
                 .bold()
                 .frame(width: 240, height: 20, alignment: .top)
                 .padding(.top,10)
-
-                
+            
+            
             
             ScrollView{
                 LazyVGrid(columns: columns, spacing: 20){
-                    
-                    ForEach(myList.lists){ lista in
-                        NavigationLink(destination:ListDetailView(lista: lista)){
+                    ForEach(myList.lists){lista in
+                        if(lista.favourite){
                             
-                            CardOfList(list : lista, width_: 140, height_: 140)
+                            NavigationLink(destination:ListDetailView(lista: lista)){
+                                
+                                CardOfList(list : lista, width_: 140, height_: 140)
+                                
+                            }
+                            
                             
                         }
                     }

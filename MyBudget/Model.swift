@@ -23,6 +23,7 @@ struct List_: Identifiable {//Identifica l'oggetto come UNICO
     var budget: Double
     var articles : [Article]
     var imageName : String = ""
+    var favourite : Bool = false
 }
 // modello amici
 struct Friends:Identifiable{

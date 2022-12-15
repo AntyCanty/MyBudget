@@ -57,9 +57,6 @@ struct ListView: View {
         }
     }
     
-    func delete(at offsets: IndexSet){
-        myList.lists.remove(atOffsets: offsets)
-    }
 }
 
 
