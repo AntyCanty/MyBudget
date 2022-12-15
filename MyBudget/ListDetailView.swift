@@ -55,7 +55,7 @@ struct ListDetailView: View {
                         Button{
                             setAsFavourite(idList:lista.id)
                         } label: {
-                            Label("Add to favourites",systemImage: "star")
+                            Label("Add list to favourites",systemImage: "star")
                         }
                         Button {
                             newArticleViewisPresented.toggle()
