@@ -21,6 +21,7 @@
 		8634B2812949C342000D788A /* SheetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8634B2802949C342000D788A /* SheetImageView.swift */; };
 		DD8E8F18294B0BB900F0772D /* PieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E8F17294B0BB900F0772D /* PieCard.swift */; };
 		DD8E8F1A294B19DF00F0772D /* FavouritesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E8F19294B19DF00F0772D /* FavouritesCardView.swift */; };
+		DD8E8F1C294B394800F0772D /* NewArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E8F1B294B394800F0772D /* NewArticleView.swift */; };
 		DDD44C932940A7FC008C7696 /* MyBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD44C922940A7FC008C7696 /* MyBudgetApp.swift */; };
 		DDD44C972940A7FE008C7696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD44C962940A7FE008C7696 /* Assets.xcassets */; };
 		DDD44C9A2940A7FE008C7696 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD44C992940A7FE008C7696 /* Preview Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		8634B2802949C342000D788A /* SheetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetImageView.swift; sourceTree = "<group>"; };
 		DD8E8F17294B0BB900F0772D /* PieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieCard.swift; sourceTree = "<group>"; };
 		DD8E8F19294B19DF00F0772D /* FavouritesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesCardView.swift; sourceTree = "<group>"; };
+		DD8E8F1B294B394800F0772D /* NewArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewArticleView.swift; sourceTree = "<group>"; };
 		DDD44C8F2940A7FC008C7696 /* MyBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD44C922940A7FC008C7696 /* MyBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetApp.swift; sourceTree = "<group>"; };
 		DDD44C962940A7FE008C7696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				DDD44C922940A7FC008C7696 /* MyBudgetApp.swift */,
 				8634B27A29450ACC000D788A /* ContainerView.swift */,
+				DD8E8F1B294B394800F0772D /* NewArticleView.swift */,
 				82C4C59F29486E7700380BEE /* MainPageView.swift */,
 				DD8E8F17294B0BB900F0772D /* PieCard.swift */,
 				8634B27229439AD6000D788A /* Model.swift */,
@@ -191,6 +194,7 @@
 				17471E4D2947431A00945428 /* NewFriendsView.swift in Sources */,
 				49B10C6029489C4C001B4F24 /* CheckBoxView.swift in Sources */,
 				DDD44C932940A7FC008C7696 /* MyBudgetApp.swift in Sources */,
+				DD8E8F1C294B394800F0772D /* NewArticleView.swift in Sources */,
 				8634B27529439C87000D788A /* Data.swift in Sources */,
 				DDD44CA129471CA5008C7696 /* CardOfList.swift in Sources */,
 				8634B27D29450BCF000D788A /* NewListView.swift in Sources */,
