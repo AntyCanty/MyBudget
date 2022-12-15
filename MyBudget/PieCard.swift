@@ -114,7 +114,7 @@ struct PieCard: View {
                 .padding(.trailing,180)
             
         }//ZStaxk
-        .navigationTitle(budgetTitle())
+        .navigationTitle("Expenses")
         
         .multilineTextAlignment(.trailing)
         .aspectRatio(1, contentMode: .fit)
@@ -141,23 +141,23 @@ struct PieCard: View {
         }
         return Double(round(10 * total) / 10)
     }
-
-    func budgetTitle() -> String{
-        
-        var title : String = ""
-        
-        if(calcTotalSpent() <= (calcTotalBudget()/2)){
-            title = "You're doing great! 🤩"
-        }
-        else if(calcTotalSpent() > (calcTotalBudget()/2) && calcTotalSpent() < calcTotalBudget()){
-            title = "You're almost over! 😰"
-        }
-        else if(calcTotalSpent() >= calcTotalBudget()){
-            title = "Oh no, You're over! 😭"
-
-        }
-        return title
-    }
+//
+//    func budgetTitle() -> String{
+//
+//        var title : String = ""
+//
+//        if(calcTotalSpent() <= (calcTotalBudget()/2)){
+//            title = "You're doing great! 🤩"
+//        }
+//        else if(calcTotalSpent() > (calcTotalBudget()/2) && calcTotalSpent() < calcTotalBudget()){
+//            title = "You're almost over! 😰"
+//        }
+//        else if(calcTotalSpent() >= calcTotalBudget()){
+//            title = "Oh no, You're over! 😭"
+//
+//        }
+//        return title
+//    }
 }
 
 

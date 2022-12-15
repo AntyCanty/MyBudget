@@ -17,37 +17,15 @@ struct ListDetailView: View {
         
         NavigationStack {
             HStack{
-                //
-                //                Text("B: " + String(updateBudget()) + " / " + String(lista.budget))
-                //                    .multilineTextAlignment(.center)
-                //                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
-                //                    .frame(width: 160,height: 35.0)
-                //                    .background(Color(red: 0.949, green: 0.949, blue: 0.971))
-                //                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
-                //            }
-                Text("S: " + String(updateBudget()) + " / B: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
+
+                Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
                     .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
                 
                     .multilineTextAlignment(.center)
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
-                    .frame(width: 180,height: 35.0)
+                    .frame(width: 300,height: 35.0)
                     .background(Color(red: 0.949, green: 0.949, blue: 0.971))
-                    .frame(width: 180, height: 40).scaledToFit().cornerRadius(15)
-                
-//                Text(String(updateBudget()))
-//                    .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
-//                    .multilineTextAlignment(.center)
-//                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
-//                    .frame(width: 160,height: 35.0)
-//                    .background(Color(red: 0.949, green: 0.949, blue: 0.971))
-//                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
-//
-//                Text(" / B: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
-//                    .multilineTextAlignment(.center)
-//                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
-//                    .frame(width: 160,height: 35.0)
-//                    .background(Color(red: 0.949, green: 0.949, blue: 0.971))
-//                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
+                    .frame(width: 300, height: 40).scaledToFit().cornerRadius(15)
 
             }
             List{
