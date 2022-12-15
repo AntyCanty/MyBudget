@@ -18,11 +18,7 @@ struct FavouritesCardView: View {
     
     var body: some View {
         
-        //        ForEach(myList.lists){i in
-        //            if(i.favourite){
-        //
-        //            }
-        //        }
+
         
         ZStack(alignment: .top){
             Rectangle()
