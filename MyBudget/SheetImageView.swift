@@ -20,13 +20,6 @@ struct SheetImageView: View {
     ]
     var body: some View {
         
-        //        Button("Press to dismiss") {
-        //            dismiss()
-        //        }
-        //        .font(.title)
-        //        .padding()
-        //        .background(.black)
-        //        }
         NavigationStack{
             ScrollView{
                 LazyVGrid(columns: columns, spacing: 20){

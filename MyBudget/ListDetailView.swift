@@ -50,7 +50,8 @@ struct ListDetailView: View {
             }
             .navigationTitle(lista.title)
             .sheet(isPresented: $newArticleViewisPresented) {
-            }
+                    NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: listData.lists[0].id)
+                }
             .toolbar {
                 Button {
                     newArticleViewisPresented.toggle()
@@ -73,6 +74,7 @@ struct ListDetailView: View {
     
     func delete(at offsets: IndexSet){
         lista.articles.remove(atOffsets: offsets)
+      
     }
     
     func updateBudget() -> Double{
@@ -86,17 +88,6 @@ struct ListDetailView: View {
         
     }
     
-    func getAlreadYSpend(articles : [Article] ) -> Double{
-        
-        var total : Double = 0
-        
-        for article in  articles{
-            total += article.price
-        }
-        
-        return Double(round(10 * total) / 10)
-        
-    }
     
     func getColorOfSpent(budget: Double, totSpent : Double) -> Color{
         

@@ -19,7 +19,7 @@ struct NewListView: View {
     @State var count : Int = 1
     @State var ArrayOfNames : [String] = [""]
     @State var ArrayOfPrices : [Double] = [0]
-    @State var ArrayOfQnt : [Double] = [0]
+    @State var ArrayOfQnt : [Double] = [1]
     @State var selectedImage : String = symbolData.symbols[0]
     @State var checkDelete : Bool = false
     @State private var showingSheet = false
@@ -64,7 +64,7 @@ struct NewListView: View {
                             Button{
                                 ArrayOfNames.append("")
                                 ArrayOfPrices.append(0)
-                                ArrayOfQnt.append(0)
+                                ArrayOfQnt.append(1)
                                 
                                 count+=1
                                 checkDelete = true
@@ -83,7 +83,7 @@ struct NewListView: View {
                                     Divider()
                                     
                                     
-                                    TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                                    TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                                     
                                     Divider()
                                     

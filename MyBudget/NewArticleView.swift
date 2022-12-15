@@ -9,11 +9,11 @@ import SwiftUI
 
 struct NewArticleView: View {
     
-    @Binding var newListViewisPresented : Bool
+    @Binding var newArticleViewisPresented : Bool
     
     @State var name: String = ""
     @State var price: Double = 0
-    @State var quantity: Double = 0
+    @State var quantity: Double = 1
     
     @State var idList : UUID
         
@@ -42,9 +42,9 @@ struct NewArticleView: View {
             .toolbar {
                 ToolbarItem{
                     Button{
-                        addArtcileInList(name: name, price: price, quantity: quantity)
+                        addArticleInList(name: name, price: price, quantity: quantity)
                         
-                        newListViewisPresented.toggle()
+                        newArticleViewisPresented.toggle()
                         
                     }label:{
                         Text("Save")
@@ -58,7 +58,7 @@ struct NewArticleView: View {
         
     }
     
-    func addArtcileInList(name : String, price : Double, quantity : Double){
+    func addArticleInList(name : String, price : Double, quantity : Double){
         
         let index = myList.lists.firstIndex(where: {$0.id == idList})
         
@@ -75,6 +75,6 @@ struct NewArticleView: View {
 
 struct NewArticleView_Previews: PreviewProvider {
     static var previews: some View {
-        NewArticleView(newListViewisPresented: .constant(true), idList: listData.lists[0].id)
+        NewArticleView(newArticleViewisPresented: .constant(true), idList: listData.lists[0].id)
     }
 }
