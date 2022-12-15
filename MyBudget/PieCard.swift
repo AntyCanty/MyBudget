@@ -101,12 +101,12 @@ struct PieCard: View {
                         count += 1
                     }
                 }
-                
+
                 Text(String(round(10*(calcTotalSpent()/calcTotalBudget())*100)/10) + "%").font(.title).fontWeight(.black).foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491)).multilineTextAlignment(.center).lineLimit(nil)
             }.frame(width: 250, height: 250)
                 .padding(.trailing,180)
             
-        }//ZStaxk
+        }//ZStack
         .navigationTitle("Expenses")
         
         .multilineTextAlignment(.trailing)

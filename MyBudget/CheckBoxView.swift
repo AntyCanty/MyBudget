@@ -21,7 +21,7 @@ struct CheckBoxView: View {
                 let index = myList.lists.firstIndex(where: {$0.id == idList})
                 let indexArticle = myList.lists[index!].articles.firstIndex(where: {$0.id == article.id})
                 myList.lists[index!].articles[indexArticle!].brought.toggle()
-//                print("is checked: " + String(article.brought) )
+                
             }
             
     }
