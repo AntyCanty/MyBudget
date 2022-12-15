@@ -13,8 +13,7 @@ struct FriendsView: View {
     @State
     var searchtext = ""
     private var selectedIndex: Int?
-    @State
-    var newfriendispresented: Bool = false
+    @State var NewFriendViewisPresented: Bool = false
     
     var body: some View {
         
@@ -32,13 +31,13 @@ struct FriendsView: View {
             }
             .navigationTitle("Friends")
             .searchable(text: $searchtext)
-            .sheet(isPresented: $newfriendispresented) {
-                NewFriendsView()
+            .sheet(isPresented: $NewFriendViewisPresented) {
+                NewFriendsView(NewFriendViewisPresented: $NewFriendViewisPresented)
             }
             .toolbar {
                 ToolbarItem {
                     Button {
-                        newfriendispresented.toggle()
+                        NewFriendViewisPresented.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
