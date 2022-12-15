@@ -10,12 +10,12 @@ import SwiftUI
 struct CheckBoxView: View {
     @ObservedObject var myList = listData
     @Binding var article: Article
-    @State var idList : UUID 
+    @State var idList : UUID
 
     var body: some View {
         
         Image(systemName: article.brought ? "checkmark.square.fill" : "square")
-            .foregroundColor(article.brought ? Color(UIColor.systemBlue) : Color.secondary)
+            .foregroundColor(article.brought ? Color(.purple).opacity(0.6) : Color.secondary)
             .onTapGesture {
                 article.brought.toggle()
                 let index = myList.lists.firstIndex(where: {$0.id == idList})
