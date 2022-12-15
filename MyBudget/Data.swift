@@ -11,7 +11,7 @@ class ArticleData: ObservableObject{
     
     @Published var articles = [
         Article(name: "Bread", price: 1.00, quantity: 1),
-        Article(name: "Milk", price: 1.20, quantity: 0.500),
+        Article(name: "Milk", price: 1.20, quantity: 2),
         Article(name: "Biscuits", price: 3.00, quantity: 1),
         Article(name: "Hamburger", price: 5.30),
         Article(name: "Eggs", price: 2.20,quantity: 1),

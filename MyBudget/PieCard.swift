@@ -130,7 +130,7 @@ struct PieCard: View {
         for i in myList.lists{
             for j in i.articles{
                 if(j.brought){
-                    total = total + j.price
+                    total = total + (j.price * j.quantity)
                 }
             }
         }
