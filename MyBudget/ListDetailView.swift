@@ -50,7 +50,7 @@ struct ListDetailView: View {
             }
             .navigationTitle(lista.title)
             .sheet(isPresented: $newArticleViewisPresented) {
-                    NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: listData.lists[0].id)
+                    NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: lista.id)
                 }
             .toolbar {
                 Button {
