@@ -51,7 +51,7 @@ struct CardOfList: View {
                 Spacer()
                 HStack(alignment: .bottom){
                     
-                    Text(String(getAlreadYSpend(articles: list.articles)))
+                    Text("  "+String(getAlreadYSpend(articles: list.articles)))
                         .font(.body)
                         .bold()
                         .padding(.leading,5)
@@ -96,7 +96,9 @@ func getAlreadYSpend(articles : [Article] ) -> Double{
     var total : Double = 0
     
     for article in  articles{
-        total += article.price
+        if(article.brought){
+            total += (article.price * article.quantity)
+        }
     }
     
     return Double(round(10 * total) / 10)

@@ -79,7 +79,7 @@ struct ListDetailView: View {
         var sum : Double = 0.0
         for i in lista.articles{
             if(i.brought){
-                sum = sum + i.price
+                sum = sum + (i.price * i.quantity)
             }
         }
         return Double(round(10 * sum) / 10)
