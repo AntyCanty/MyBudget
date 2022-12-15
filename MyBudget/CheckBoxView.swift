@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckBoxView: View {
-    @EnvironmentObject var myList : ListData
+    @ObservedObject var myList = listData
     @Binding var article: Article
     @State var idList : UUID 
 

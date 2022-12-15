@@ -10,6 +10,8 @@ import SwiftUI
 struct CardOfList: View {
     
     var list : List_
+    var width_ : CGFloat = 160
+    var height_ : CGFloat = 160
     
     var body: some View {
         
@@ -37,7 +39,7 @@ struct CardOfList: View {
                         .shadow(radius: 10)
                     
                 }
-                .frame(width: 170)
+                .frame(width: width_ + 10)
                 .foregroundColor(.black)
                 
                 Text(list.title)
@@ -74,7 +76,7 @@ struct CardOfList: View {
             }
             
             Rectangle()
-                .frame(width: 170, height: 170)
+                .frame(width: width_ + 10, height: height_ + 10)
                 .cornerRadius(20)
                 .foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491))
                 .opacity(0.2)
@@ -82,7 +84,7 @@ struct CardOfList: View {
 //                    RoundedRectangle(cornerRadius: 16)
 //                        .stroke(.purple, lineWidth: 2)
 //                )
-        }.frame(width: 160, height: 160)
+        }.frame(width: width_, height: height_)
         
         
         
