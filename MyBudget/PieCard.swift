@@ -64,13 +64,6 @@ struct PieCard: View {
                     if(total >= 100){
                         total = 99.99
                     }
-
-//                    if((round(10*(calcTotalSpent()/calcTotalBudget())*100)/10) >= 100 ){
-//                        total = slices.reduce(-1) { $0 + $1.0 }
-//                    }
-//                    else if((round(10*(calcTotalSpent()/calcTotalBudget())*100)/10) >= 75 && (round(10*(calcTotalSpent()/calcTotalBudget())*100)/10) < 100  ){
-//                        total = slices.reduce(1) { $0 + $1.0 }
-//                    }
                     
                     context.translateBy(x: size.width * 0.5, y: size.height * 0.5)
                     var pieContext = context
@@ -108,12 +101,12 @@ struct PieCard: View {
                         count += 1
                     }
                 }
-                
+
                 Text(String(round(10*(calcTotalSpent()/calcTotalBudget())*100)/10) + "%").font(.title).fontWeight(.black).foregroundColor(Color(hue: 0.827, saturation: 0.234, brightness: 0.491)).multilineTextAlignment(.center).lineLimit(nil)
             }.frame(width: 250, height: 250)
                 .padding(.trailing,180)
             
-        }//ZStaxk
+        }//ZStack
         .navigationTitle("Expenses")
         
         .multilineTextAlignment(.trailing)
@@ -136,7 +129,9 @@ struct PieCard: View {
         
         for i in myList.lists{
             for j in i.articles{
-                 total = total + j.price
+                if(j.brought){
+                    total = total + (j.price * j.quantity)
+                }
             }
         }
         return Double(round(10 * total) / 10)
