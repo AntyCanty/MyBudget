@@ -66,8 +66,6 @@ struct NewArticleView: View {
         
         myList.lists[index!].articles.append(newArticle)
         
-//        let indexArticle = myList.lists[index!].articles.firstIndex(where: {$0.id == article.id})
-//        myList.lists[index!].articles[indexArticle!].brought.toggle()
         
     }
     

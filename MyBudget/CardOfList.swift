@@ -60,7 +60,7 @@ struct CardOfList: View {
                         .padding(.leading,5)
                         .foregroundColor(getColorOfSpent(budget: list.budget, totSpent: getAlreadYSpend(articles: list.articles)))
                                         
-                    Text("/ "+String(list.budget >= 1000 ? (String(round(10 * list.budget/1000) / 10) + " K") : String( round(10 * list.budget) / 10)))
+                    Text("/ "+String(list.budget >= 1000 ? (String(round(10 * list.budget/1000) / 10) + "K $") : String( round(10 * list.budget) / 10) + " $"))
                         .font(.body)
                         .bold()
                     

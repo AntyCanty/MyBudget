@@ -15,7 +15,7 @@ struct ListDetailView: View {
         NavigationStack {
             HStack{
 
-                Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
+                Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + "K $") : String( round(10 * lista.budget) / 10)))
                     .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
 
                     .multilineTextAlignment(.center)
