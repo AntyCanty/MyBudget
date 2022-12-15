@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ListDetailView: View {
     
-    @EnvironmentObject var myList : ListData
+    @ObservedObject var myList = listData
     @State var lista : List_
     @State private var searchText = ""
     @State var newArticleViewisPresented: Bool = false

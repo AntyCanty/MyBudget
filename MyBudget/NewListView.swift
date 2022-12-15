@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewListView: View {
     
-    @EnvironmentObject var myList : ListData
+    @ObservedObject var myList = listData
     @ObservedObject var myArticle = articleData
     
     @State var title: String = ""

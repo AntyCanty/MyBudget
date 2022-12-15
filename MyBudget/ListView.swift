@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     
-    @EnvironmentObject var myList : ListData
+    @ObservedObject var myList = listData
     @State private var searchText = ""
     @State var newListViewisPresented: Bool = false
     
