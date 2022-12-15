@@ -15,6 +15,8 @@ struct NewFriendsView: View {
     @State var color: Color = Color.white
     @State var text = ""
     
+    @Binding var NewFriendViewisPresented : Bool
+    
     var body: some View {
         
         NavigationStack{
@@ -37,10 +39,10 @@ struct NewFriendsView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        //1st
+                        
                         addfriend(name: name, surname: surname, phonenumber: phonenumber)
-                        //2nd
-                        print(myData.friends.count)
+                        NewFriendViewisPresented.toggle()
+                        
                     } label: {
                         Text("Add")
                     }
@@ -59,6 +61,6 @@ struct NewFriendsView: View {
 
 struct newfriendsview_Previews: PreviewProvider {
     static var previews: some View {
-        NewFriendsView()
+        NewFriendsView(NewFriendViewisPresented: .constant(true))
     }
 }

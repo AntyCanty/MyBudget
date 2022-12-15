@@ -33,7 +33,6 @@ struct NewListView: View {
         NavigationStack{
             ScrollViewReader { p in
                 Form{
-                    //FUNCTION ADD IMAGE
             
                     Section(header: Text("Image")){
                         Button() {

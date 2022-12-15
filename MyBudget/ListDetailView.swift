@@ -17,12 +17,39 @@ struct ListDetailView: View {
         
         NavigationStack {
             HStack{
-                Text("B: " + String(round(sum * 1000) / 1000.0) + " / " + String(minuSum))
+                //
+                //                Text("B: " + String(updateBudget()) + " / " + String(lista.budget))
+                //                    .multilineTextAlignment(.center)
+                //                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+                //                    .frame(width: 160,height: 35.0)
+                //                    .background(Color(red: 0.949, green: 0.949, blue: 0.971))
+                //                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
+                //            }
+                Text("S: " + String(updateBudget()) + " / B: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
+                    .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
+                
                     .multilineTextAlignment(.center)
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
                     .frame(width: 160,height: 35.0)
                     .background(Color(red: 0.949, green: 0.949, blue: 0.971))
-            }.frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
+                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
+                
+//                Text(String(updateBudget()))
+//                    .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
+//                    .multilineTextAlignment(.center)
+//                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+//                    .frame(width: 160,height: 35.0)
+//                    .background(Color(red: 0.949, green: 0.949, blue: 0.971))
+//                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
+//
+//                Text(" / B: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + " K") : String( round(10 * lista.budget) / 10)))
+//                    .multilineTextAlignment(.center)
+//                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+//                    .frame(width: 160,height: 35.0)
+//                    .background(Color(red: 0.949, green: 0.949, blue: 0.971))
+//                    .frame(width: 160, height: 40).scaledToFit().cornerRadius(15)
+
+            }
             List{
                 ForEach($lista.articles) {$articles in
                     
@@ -38,22 +65,13 @@ struct ListDetailView: View {
                                 .scaledToFill()
                             Text("Q: " + String(articles.quantity)).frame(minWidth: 50)
                                 .scaledToFill()
-                        }.onAppear{ if(!sumIsDown){
-                            sum = sum + Double(articles.price)
-                            if(articles.id == lista.articles.first?.id) {
-                                sumIsDown.toggle()
-                            }
-                            if(articles.brought == true){
-                                minuSum = minuSum + Double(articles.price)
-                            }
                         }
-                        }.frame(width: 30).frame(maxWidth: .infinity)
+                        
                     }
                 }.onDelete(perform: delete)
             }
-            .navigationTitle("Grocery List")
+            .navigationTitle(lista.title)
             .sheet(isPresented: $newArticleViewisPresented) {
-//                NewLearnerView(newLearnerViewisPresented: $newLearnerViewisPresented)
             }
             .toolbar {
                 Button {
@@ -65,9 +83,7 @@ struct ListDetailView: View {
             }
             
         }
-        .searchable(text: $searchText)
     }
-    
     
     var searchResults: [Article] {
         if searchText.isEmpty {
@@ -81,11 +97,45 @@ struct ListDetailView: View {
         lista.articles.remove(atOffsets: offsets)
     }
     
-    //    func editLearner(item: Items) {
-    //        let newLearner = Learner(name: name, surname: surname, favouriteColor: favouriteColor, description: description)
-    //        myData.learners.append(newLearner)
-    //    }
+    func updateBudget() -> Double{
+        var sum : Double = 0.0
+        for i in lista.articles{
+            if(i.brought){
+                sum = sum + i.price
+            }
+        }
+        return Double(round(10 * sum) / 10)
+        
+    }
+    
+    func getAlreadYSpend(articles : [Article] ) -> Double{
+        
+        var total : Double = 0
+        
+        for article in  articles{
+            total += article.price
+        }
+        
+        return Double(round(10 * total) / 10)
+        
+    }
+    
+    func getColorOfSpent(budget: Double, totSpent : Double) -> Color{
+        
+        if(totSpent < budget/2){
+            return Color.green
+        }
+        else if(totSpent >= budget/2 && totSpent<budget){
+            return Color.orange
+        }
+        else{
+            return Color.red
+        }
+        
+    }
 }
+
+
 
 struct ArticleView_Previews: PreviewProvider {
     static var previews: some View {
