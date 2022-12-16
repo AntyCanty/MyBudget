@@ -10,9 +10,13 @@ struct ListDetailView: View {
     @State var newArticleViewisPresented: Bool = false
     @State var sum : Double = 0.0;
     
+    @State var isActive : Bool = false
+    
+    
     var body: some View {
         
         NavigationStack {
+            NavigationLink(destination: EmptyView(), isActive: $isActive) { EmptyView() }
             HStack{
                 
                 Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + "K $") : String( round(10 * lista.budget) / 10)))
@@ -67,6 +71,11 @@ struct ListDetailView: View {
                             else{
                                 Label("Remove list from faves",systemImage: "star.fill")
                             }
+                        }
+                        Button{
+                            isActive.toggle()
+                        }label: {
+                            Label("Modify List", systemImage: "pencil")
                         }
                         Button {
                             newArticleViewisPresented.toggle()
