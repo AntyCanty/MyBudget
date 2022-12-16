@@ -37,7 +37,7 @@ class ListData: ObservableObject{//dico che questa classe puo essere usata in al
                                                             Article(name: "Eggs", price: 2.20,quantity: 1, brought: false),
                                                             Article(name: "Apple", price: 3.00, brought: false),
                                                             Article(name: "Chips", price: 3.00, quantity: 3, brought: false)],
-              imageName: symbolData.symbols[0]),
+              imageName: symbolData.symbols[0],favourite: true),
         
         List_(title: "Clothes List", budget: 1000, articles: [       Article(name:"T-Shirt", price: 9.99,quantity: 1),
                                                                      Article(name: "Shorts", price: 15.00, quantity: 1, brought: false),

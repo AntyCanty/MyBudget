@@ -10,20 +10,24 @@ struct ListDetailView: View {
     @State var newArticleViewisPresented: Bool = false
     @State var sum : Double = 0.0;
     
+    @State var isActive : Bool = false
+    
+    
     var body: some View {
         
         NavigationStack {
+            NavigationLink(destination: NewListView(isNew: false, idList: lista.id, newListViewisPresented: $isActive), isActive: $isActive) { EmptyView() }
             HStack{
-                
+
                 Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + "K $") : String( round(10 * lista.budget) / 10)))
                     .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
-                
+
                     .multilineTextAlignment(.center)
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
                     .frame(width: 300,height: 35.0)
                     .background(Color(red: 0.949, green: 0.949, blue: 0.971))
                     .frame(width: 300, height: 40).scaledToFit().cornerRadius(15)
-                
+
             }
             List{
                 ForEach($lista.articles) {$articles in
@@ -53,7 +57,7 @@ struct ListDetailView: View {
                 let index = myList.lists.firstIndex(where: {$0.id == lista.id})
                 lista =  myList.lists[index!]
             }) {
-                NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: lista.id)
+                NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, isNew: true, idList: lista.id)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -67,6 +71,11 @@ struct ListDetailView: View {
                             else{
                                 Label("Remove list from faves",systemImage: "star.fill")
                             }
+                        }
+                        Button{
+                            isActive.toggle()
+                        }label: {
+                            Label("Modify List", systemImage: "pencil")
                         }
                         Button {
                             newArticleViewisPresented.toggle()

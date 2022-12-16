@@ -39,7 +39,7 @@ struct CardOfList: View {
 //                                .stroke(.black, lineWidth: 1)
 //                        )
                         .frame(width: 35,height: 35)
-                        .shadow(radius: 10)
+
                     
                 }
                 .frame(width: width_ + 10)
