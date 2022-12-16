@@ -32,16 +32,18 @@ struct ListDetailView: View {
                         
                         CheckBoxView(article: $articles, idList: lista.id)
                         
-                        HStack(alignment: .center, spacing: 50) {
+                        NavigationLink(destination: NewArticleView(newArticleViewisPresented: $newArticleViewisPresented,isNew : false, idArticle : articles.id , idList: lista.id)){
+                            HStack(alignment: .center, spacing: 50) {
+                                
+                                Text(articles.name).frame(width: 60)
+                                    .scaledToFill()
+                                Text(String(articles.price)+"$").frame(minWidth: 40)
+                                    .scaledToFill()
+                                Text("Q: " + String(articles.quantity)).frame(minWidth: 50)
+                                    .scaledToFill()
+                            }
                             
-                            Text(articles.name).frame(width: 60)
-                                .scaledToFill()
-                            Text(String(articles.price)+"$").frame(minWidth: 40)
-                                .scaledToFill()
-                            Text("Q: " + String(articles.quantity)).frame(minWidth: 50)
-                                .scaledToFill()
                         }
-                        
                     }
                 }
                 .onDelete(perform: delete)
@@ -49,10 +51,7 @@ struct ListDetailView: View {
             .navigationTitle(lista.title)
             .sheet(isPresented: $newArticleViewisPresented, onDismiss: {
                 let index = myList.lists.firstIndex(where: {$0.id == lista.id})
-                
-               
                 lista =  myList.lists[index!]
-                
             }) {
                 NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: lista.id)
             }
@@ -85,6 +84,10 @@ struct ListDetailView: View {
             }
             
             
+        }
+        .onAppear{
+            let index = myList.lists.firstIndex(where: {$0.id == lista.id})
+            lista =  myList.lists[index!]
         }
     }
     
