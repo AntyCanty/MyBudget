@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NewListView: View {
-    
+    @Environment(\.dismiss) var dismiss
+
     @ObservedObject var myList = listData
     @ObservedObject var myArticle = articleData
     
@@ -23,7 +24,9 @@ struct NewListView: View {
     @State var selectedImage : String = symbolData.symbols[0]
     @State var checkDelete : Bool = false
     @State private var showingSheet = false
-
+    
+    @State var isNew : Bool = true
+    @State var idList : UUID = listData.lists[0].id
     
     @Binding var newListViewisPresented : Bool
     
@@ -101,8 +104,14 @@ struct NewListView: View {
                 ToolbarItem{
                     Button{
                         
-                        addList(title: title, budget: budget, articles: articles,imageName: selectedImage, articlesName: ArrayOfNames, articlesPrice: ArrayOfPrices, articlesQuant: ArrayOfQnt)
-                        newListViewisPresented.toggle()
+                        if(isNew){
+                            addList(title: title, budget: budget, articles: articles,imageName: selectedImage, articlesName: ArrayOfNames, articlesPrice: ArrayOfPrices, articlesQuant: ArrayOfQnt)
+                            newListViewisPresented.toggle()
+                        }else{
+                            updateList(title: title, budget: budget, articles: articles,imageName: selectedImage, articlesName: ArrayOfNames, articlesPrice: ArrayOfPrices, articlesQuant: ArrayOfQnt)
+                            dismiss()
+                        }
+                       
                         
                     }label:{
                         Text("Save")
@@ -112,7 +121,16 @@ struct NewListView: View {
                 }
                 
             }
+            .onDisappear{
+                if(!isNew){
+                    newListViewisPresented.toggle()
+                }
+            }
+            .onAppear{
+                fillField()
+            }
         }
+        
     }
     
     func addList(title: String, budget: Double, articles: [Article],imageName: String, articlesName: [String], articlesPrice : [Double], articlesQuant : [Double]){
@@ -131,6 +149,55 @@ struct NewListView: View {
     {
         let newArticle = Article(name: name, price: price,quantity: quantity)
         return newArticle
+    }
+    
+    func updateList(title: String, budget: Double, articles: [Article],imageName: String, articlesName: [String], articlesPrice : [Double], articlesQuant : [Double]){
+       
+        let indexList = myList.lists.firstIndex(where: {$0.id == idList})
+        
+                
+        var newList = List_(title: title, budget: budget, articles: articles,imageName: imageName)
+        newList.id = myList.lists[indexList!].id
+        newList.articles.removeAll()
+        for i in 0..<count{
+            newList.articles.append(addArticle(name : articlesName[i], price : articlesPrice[i], quantity: articlesQuant[i]))
+            
+        }
+        myList.lists[indexList!].articles.removeAll()
+        myList.lists[indexList!] = newList
+        
+        
+    }
+    
+    func fillField(){
+
+        if(!isNew){
+            
+            let indexList = myList.lists.firstIndex(where: {$0.id == idList})
+            
+            self.title = myList.lists[indexList!].title
+            self.budget = myList.lists[indexList!].budget
+            self.imageName = myList.lists[indexList!].imageName
+            self.articles = myList.lists[indexList!].articles
+            for i in 0..<articles.count{
+                
+                if(i==0){
+                    self.ArrayOfNames[i] = articles[i].name
+                    self.ArrayOfPrices[i] = articles[i].price
+                    self.ArrayOfQnt[i] = articles[i].quantity
+                    count = 0
+                }else{
+                    self.ArrayOfNames.append(articles[i].name)
+                    self.ArrayOfPrices.append(articles[i].price)
+                    self.ArrayOfQnt.append(articles[i].quantity)
+                }
+                count += 1
+            }
+            if(count != 1){
+                checkDelete = true
+            }
+        }
+        
     }
     
     func delete(at offsets: IndexSet){
