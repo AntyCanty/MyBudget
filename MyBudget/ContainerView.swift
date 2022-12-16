@@ -20,7 +20,7 @@ struct ContainerView: View {
                 }
             FriendsView().tabItem{
                 Label("Friends", systemImage: "person.3.fill")
-                }.badge(2)
+                }
         }
     }
         

@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct NewArticleView: View {
-    
+    @Environment(\.dismiss) var dismiss
     @Binding var newArticleViewisPresented : Bool
     
     @State var name: String = ""
     @State var price: Double = 0
     @State var quantity: Double = 1
+    
+    @State var isNew : Bool = true
+    @State var idArticle : UUID = listData.lists[0].articles[0].id
     
     @State var idList : UUID
         
@@ -42,9 +45,15 @@ struct NewArticleView: View {
             .toolbar {
                 ToolbarItem{
                     Button{
-                        addArticleInList(name: name, price: price, quantity: quantity)
-                        
-                        newArticleViewisPresented.toggle()
+                        if(isNew){
+                            addArticleInList(name: name, price: price, quantity: quantity)
+                            newArticleViewisPresented.toggle()
+                        }
+                        else{
+                            updateArticle(name: name, price: price, quantity: quantity)
+                            dismiss()
+                        }
+                       
                         
                     }label:{
                         Text("Save")
@@ -54,8 +63,9 @@ struct NewArticleView: View {
                 }
                 
             }
+        }.onAppear{
+            fillField()
         }
-        
     }
     
     func addArticleInList(name : String, price : Double, quantity : Double){
@@ -68,6 +78,38 @@ struct NewArticleView: View {
         
         
     }
+    
+    func fillField(){
+        if(!isNew){
+            
+            let indexList = myList.lists.firstIndex(where: {$0.id == idList})
+            
+            let indexArticle = myList.lists[indexList!].articles.firstIndex(where: {$0.id == idArticle})
+            
+            let article = myList.lists[indexList!].articles[indexArticle!]
+            
+            name = article.name
+            price = article.price
+            quantity = article.quantity
+            
+        }
+    }
+    
+    func updateArticle(name : String, price : Double, quantity : Double){
+        if(!isNew){
+            
+            let indexList = myList.lists.firstIndex(where: {$0.id == idList})
+            
+            let indexArticle = myList.lists[indexList!].articles.firstIndex(where: {$0.id == idArticle})
+                        
+            let article = Article(name: name, price: price, quantity: quantity)
+            
+            myList.lists[indexList!].articles[indexArticle!] = article
+            
+            
+        }
+    }
+    
     
 }
 
