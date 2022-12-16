@@ -14,16 +14,16 @@ struct ListDetailView: View {
         
         NavigationStack {
             HStack{
-
+                
                 Text("Spent: " + String(updateBudget()) + " / Budget: "+String(lista.budget >= 1000 ? (String(round(10 * lista.budget/1000) / 10) + "K $") : String( round(10 * lista.budget) / 10)))
                     .foregroundColor(getColorOfSpent(budget: lista.budget, totSpent: updateBudget()))
-
+                
                     .multilineTextAlignment(.center)
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
                     .frame(width: 300,height: 35.0)
                     .background(Color(red: 0.949, green: 0.949, blue: 0.971))
                     .frame(width: 300, height: 40).scaledToFit().cornerRadius(15)
-
+                
             }
             List{
                 ForEach($lista.articles) {$articles in
@@ -43,10 +43,17 @@ struct ListDetailView: View {
                         }
                         
                     }
-                }.onDelete(perform: delete)
+                }
+                .onDelete(perform: delete)
             }
             .navigationTitle(lista.title)
-            .sheet(isPresented: $newArticleViewisPresented) {
+            .sheet(isPresented: $newArticleViewisPresented, onDismiss: {
+                let index = myList.lists.firstIndex(where: {$0.id == lista.id})
+                
+               
+                lista =  myList.lists[index!]
+                
+            }) {
                 NewArticleView(newArticleViewisPresented: $newArticleViewisPresented, idList: lista.id)
             }
             .toolbar {
@@ -74,7 +81,7 @@ struct ListDetailView: View {
                     
                     
                 }
-
+                
             }
             
             
@@ -90,7 +97,11 @@ struct ListDetailView: View {
     }
     
     func delete(at offsets: IndexSet){
+        let index = myList.lists.firstIndex(where: {$0.id == lista.id})
+        
+        myList.lists[index!].articles.remove(atOffsets: offsets)
         lista.articles.remove(atOffsets: offsets)
+        
     }
     
     func deleteList(idList : UUID){
@@ -100,10 +111,10 @@ struct ListDetailView: View {
     
     func setAsFavourite(idList : UUID){
         
-            lista.favourite.toggle()
-            let index = myList.lists.firstIndex(where: {$0.id == idList})
-            myList.lists[index!].favourite.toggle()
-            
+        lista.favourite.toggle()
+        let index = myList.lists.firstIndex(where: {$0.id == idList})
+        myList.lists[index!].favourite.toggle()
+        
     }
     
     func updateBudget() -> Double{

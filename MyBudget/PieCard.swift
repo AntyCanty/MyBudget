@@ -64,6 +64,9 @@ struct PieCard: View {
                     if(total >= 100){
                         total = 99.99
                     }
+                    if(total <= 0){
+                        total = 0.01
+                    }
                     
                     context.translateBy(x: size.width * 0.5, y: size.height * 0.5)
                     var pieContext = context

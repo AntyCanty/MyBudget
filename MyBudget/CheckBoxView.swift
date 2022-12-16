@@ -18,10 +18,11 @@ struct CheckBoxView: View {
             .foregroundColor(article.brought ? Color(.purple).opacity(0.6) : Color.secondary)
             .onTapGesture {
                 article.brought.toggle()
+                
                 let index = myList.lists.firstIndex(where: {$0.id == idList})
                 let indexArticle = myList.lists[index!].articles.firstIndex(where: {$0.id == article.id})
                 myList.lists[index!].articles[indexArticle!].brought.toggle()
-                
+                    
             }
             
     }
