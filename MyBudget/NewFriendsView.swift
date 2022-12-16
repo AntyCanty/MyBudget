@@ -29,6 +29,7 @@ struct NewFriendsView: View {
                 }
                 Section(header: Text("phone number")) {
                     TextField("Type phone number", text:$phonenumber)
+                        .keyboardType(.numberPad)
                 }
                 Section(header: Text("color")) {
                     ColorPicker("Choose color", selection: $color)
@@ -40,7 +41,7 @@ struct NewFriendsView: View {
                 ToolbarItem {
                     Button {
                         
-                        addfriend(name: name, surname: surname, phonenumber: phonenumber)
+                        addfriend(name: name, surname: surname, phonenumber: phonenumber,color: color)
                         NewFriendViewisPresented.toggle()
                         
                     } label: {
@@ -50,10 +51,10 @@ struct NewFriendsView: View {
             }
         }
     }
-    func addfriend(name:String, surname: String, phonenumber:String){
+    func addfriend(name:String, surname: String, phonenumber:String, color: Color){
         let newfriend = Friends(name: name,
                                  surname: surname,
-                                 favoritecolor: .black,
+                                 favoritecolor: color,
                                  phonenumber: phonenumber)
         myData.friends.append(newfriend)
     }
