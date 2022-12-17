@@ -29,7 +29,7 @@ struct FavouritesCardView: View {
                 .opacity(0.07)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(hue: 0.818, saturation: 0.636, brightness: 0.431), lineWidth: 4))
+                        .stroke(Color(hue: 0.818, saturation: 0.636, brightness: 0.431), lineWidth: 1))
             
             
             

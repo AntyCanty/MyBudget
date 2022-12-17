@@ -33,5 +33,6 @@ struct Friends:Identifiable{
     var favoritecolor: Color
     var phonenumber: String = "no description"
     var imagename: String = "no image"
+    var icloud : String = ""
 }
 

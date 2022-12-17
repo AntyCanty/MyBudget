@@ -23,7 +23,7 @@ struct PieCard: View {
                 .opacity(0.07)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(hue: 0.818, saturation: 0.636, brightness: 0.431), lineWidth: 4))
+                        .stroke(Color(hue: 0.818, saturation: 0.636, brightness: 0.431), lineWidth: 1))
             
             
             
@@ -60,7 +60,8 @@ struct PieCard: View {
                     }
                     context.clip(to: donut, style: .init(eoFill: true))
 
-                    var total = round(10*(calcTotalSpent()/calcTotalBudget())*100) / 10
+//                    var total = round(10*(calcTotalSpent()/calcTotalBudget())*100) / 10
+                    var total = calcPercentage()
                     if(total >= 100){
                         total = 99.99
                     }

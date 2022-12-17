@@ -87,10 +87,12 @@ struct NewListView: View {
                                     
                                     
                                     TextField("Price",  value: $ArrayOfPrices[i], format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                                        .keyboardType(.decimalPad)
                                     
                                     Divider()
                                     
                                     TextField("Quantity", value: $ArrayOfQnt[i], format: .number)
+                                        .keyboardType(.decimalPad)
                                 }
                             }.onDelete( perform: delete)
                                 .deleteDisabled(!checkDelete)

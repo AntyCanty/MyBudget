@@ -35,6 +35,10 @@ struct FriendsDetail: View {
                     
                 }
                 .foregroundColor(friends.favoritecolor)
+                HStack{
+                    Image(systemName: "icloud")
+                    Text(friends.icloud)
+                }
                 Text(friends.phonenumber)
             }
         }

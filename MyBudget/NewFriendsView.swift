@@ -21,18 +21,25 @@ struct NewFriendsView: View {
         
         NavigationStack{
             Form{
-                Section(header: Text("name")) {
-                    TextField("Type name", text: $name)
-                }
-                Section(header: Text("surname")) {
-                    TextField("Type surname", text: $surname)
-                }
-                Section(header: Text("phone number")) {
-                    TextField("Type phone number", text:$phonenumber)
-                        .keyboardType(.numberPad)
-                }
-                Section(header: Text("color")) {
-                    ColorPicker("Choose color", selection: $color)
+//                Section(header: Text("name")) {
+//                    TextField("Type name", text: $name)
+//                }
+//                Section(header: Text("surname")) {
+//                    TextField("Type surname", text: $surname)
+//                }
+//                Section(header: Text("phone number")) {
+//                    TextField("Type phone number", text:$phonenumber)
+//                        .keyboardType(.decimalPad)
+//                }
+//                Section(header: Text("color")) {
+//                    ColorPicker("Choose color", selection: $color)
+//                }
+                Section(header : Text("iCloud Account")){
+                    HStack{
+                        Image(systemName: "icloud")
+                        TextField("example@icloud.com",text: $name)
+                    }
+                    
                 }
                 
             }
