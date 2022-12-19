@@ -101,7 +101,7 @@ struct NewListView: View {
                     }
                 }
             }
-            .navigationTitle("New List")
+            .navigationTitle( isNew ? "New List"  : "Modify List")
             .toolbar {
                 ToolbarItem{
                     Button{

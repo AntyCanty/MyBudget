@@ -41,7 +41,7 @@ struct NewArticleView: View {
                 }
                 
             }
-            .navigationTitle("New Article")
+            .navigationTitle( isNew ? "New Article" : "Modify Article")
             .toolbar {
                 ToolbarItem{
                     Button{
